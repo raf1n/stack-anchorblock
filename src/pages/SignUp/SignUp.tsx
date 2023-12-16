@@ -16,10 +16,10 @@ const SignUp = () => {
     <div className="mt-24">
       <div className="grid grid-cols-1 place-content-center place-items-center">
         <div className="shadow-lg p-10 rounded-xl">
-          <div className="flex items-center gap-2">
+          <form className="flex items-center gap-2">
             <img className="w-14 h-10 -ml-2" src={Logo} alt="" />
             <h1 className="text-[#4E5D78] font-bold text-2xl">Stack</h1>
-          </div>
+          </form>
           <div>
             <h1 className="font-semibold text-xl mt-2 text-[#404040]">
               Sign up to join with Stack
@@ -81,7 +81,7 @@ const SignUp = () => {
           <div className="mt-4">
             <h1 className="text-[13px] font-normal text-gray-400 text-start">
               Already have an account?{" "}
-              <Link className="text-[#377DFF] font-medium" to={"/"}>
+              <Link className="text-[#377DFF] font-medium" to={"/sign-in"}>
                 Sign In
               </Link>
             </h1>
