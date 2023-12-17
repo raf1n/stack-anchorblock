@@ -12,7 +12,7 @@ interface topBarPropTypes {
 
 const TopNavbar = ({ toggle, setToggle }: topBarPropTypes) => {
   return (
-    <div className="bg-primary flex justify-between items-center shadow py-3 px-6 sky top-0 w-full">
+    <div className="bg-primary flex justify-between items-center shadow py-2 px-6 sticky top-0 w-full">
       <div
         onClick={() => setToggle(!toggle)}
         className="lg:hidden md:hidden block cursor-pointer"
@@ -20,7 +20,7 @@ const TopNavbar = ({ toggle, setToggle }: topBarPropTypes) => {
         <HiMenuAlt1 className="text-white h-6 w-6" />
       </div>
       <div className="transition-all duration-300 cursor-pointer rounded-full flex items-center gap-4 lg:px-20">
-        <div className="flex items-center text-white gap-3 font-semibold -ml-10 lg:ml-0 text-xl">
+        <div className="flex items-center text-white gap-3 font-semibold -ml-10 md:ml-0 lg:ml-0 text-xl">
           <img className="w-10 h-6" src={NavLogo} alt="" />
           <h1>Stack</h1>
         </div>
@@ -95,13 +95,13 @@ const TopNavbar = ({ toggle, setToggle }: topBarPropTypes) => {
       )}
 
       <div className="flex gap-3 items-center">
-        <div className="  rounded-full cursor-pointer">
+        <div className="rounded-full cursor-pointer">
           <div className="flex items-center gap-4">
-            <CiSearch className="h-5 w-5 text-[#D6BBFB]" />
-            <IoIosNotificationsOutline className="h-5 w-5 text-[#D6BBFB]" />
-            <CiSettings className="h-5 w-5 text-[#D6BBFB]" />
+            <CiSearch className="h-6 w-6 text-[#D6BBFB]" />
+            <IoIosNotificationsOutline className="h-6 w-6 text-[#D6BBFB]" />
+            <CiSettings className="h-6 w-6 text-[#D6BBFB]" />
             <img
-              className="inline rounded-full h-8 w-8"
+              className="inline rounded-full h-9 w-9"
               src="https://demos.creative-tim.com/notus-js/assets/img/team-1-800x800.jpg"
               alt=""
             />

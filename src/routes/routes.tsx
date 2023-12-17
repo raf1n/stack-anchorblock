@@ -4,6 +4,7 @@ import Errorpage from "../pages/ErrorPage/ErrorPage";
 import SignUp from "../pages/SignUp/SignUp";
 import SignIn from "../pages/SignIn/SignIn";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Users from "../components/Users/Users";
 
 export const routes = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Dashboard />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
       },
     ],
   },
