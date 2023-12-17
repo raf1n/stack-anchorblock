@@ -1,19 +1,37 @@
 import Table from "../Table/Table";
 import { FiUploadCloud } from "react-icons/fi";
 import { GoPlus } from "react-icons/go";
-const Users = () => {
-  const data = [
-    {
-      id: 7,
-      email: "michael.lawson@reqres.in",
-      first_name: "Michael",
-      last_name: "Lawson",
-      avatar: "https://reqres.in/img/faces/7-image.jpg",
-    },
-    // ... other data items
-  ];
+import { useGetAllUsersQuery } from "../../lib/redux/feature/user/userApiSlice";
+import { useState } from "react";
 
-  // ...
+const Users = () => {
+  const [page, setPage] = useState<number>(1);
+
+  const { data, isLoading } = useGetAllUsersQuery({ page });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
+          <svg
+            fill="none"
+            className="w-6 h-6 animate-spin"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+
+          <div>Loading ...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-16 space-y-6">
@@ -32,7 +50,7 @@ const Users = () => {
           </button>
         </div>
       </div>
-      <Table data={data} />
+      <Table page={page} setPage={setPage} data={data} />
     </div>
   );
 };

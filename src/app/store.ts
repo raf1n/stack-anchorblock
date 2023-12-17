@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "../lib/redux/feature/api/apiSlice";
-
+import authReducer from "../lib/redux/feature/auth/authSlice";
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authReducer,
+  },
   devTools: import.meta.env.VITE_ENV !== "PRODUCTION",
   middleware: (gDM) => gDM().concat(apiSlice.middleware),
 });

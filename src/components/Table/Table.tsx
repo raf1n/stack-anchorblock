@@ -1,27 +1,18 @@
-import React, { useState } from "react";
-
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import Pagination from "../Pagination/Pagination";
+interface TablePropType {
+  data: any;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  page: number;
+}
 
-const Table = ({ data, itemsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
-
+const Table = ({ data, setPage, page }: TablePropType) => {
   return (
-    <div className="flex flex-col">
-      <div className="overflow-x-auto">
-        <div className="p-1.5 w-full inline-block align-middle">
-          <div className="overflow-hidden border rounded-lg shadow-sm">
-            <table className="min-w-full divide-y divide-gray-200">
+    <div className="flex flex-col w-full">
+      <div className="w-full overflow-auto">
+        <div className="p-1.5 w-[800px] lg:w-full align-middle">
+          <div className="w-full border rounded-lg shadow-sm ">
+            <table className="w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="py-3 pl-4">
@@ -60,7 +51,7 @@ const Table = ({ data, itemsPerPage }) => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {data.map((row, rowIndex) => (
+                {data?.data?.map((row: any, rowIndex: any) => (
                   <tr key={rowIndex}>
                     <td className="py-3 pl-4">
                       <div className="flex items-center">
@@ -80,7 +71,7 @@ const Table = ({ data, itemsPerPage }) => {
                           />
                         )}
                         <div>
-                          <div className="text-sm font-medium text-gray-800">
+                          <div className="font-medium text-gray-800">
                             {`${row.first_name} ${row.last_name}`}
                           </div>
                           <div className="text-xs text-gray-500">
@@ -89,37 +80,36 @@ const Table = ({ data, itemsPerPage }) => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                    <td className="px-6 py-4 text-gray-800 whitespace-nowrap">
                       {/* Static "About" column */}
-                      <span className="text-xs text-gray-500">
-                        Some static info
+                      <span className="text-sm ">
+                        <span className="font-medium">Some static info</span>
+                        <br />
+                        <span className="text-sm text-gray-500">
+                          Lorem ipsum dolor shshds.
+                        </span>
                       </span>
                       <br />
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                    <td className="px-6 py-4 text-gray-800 whitespace-nowrap">
                       {/* Static "Status" column */}
-                      <span className="bg-green-100 text-xs px-3 py-[2px] font-medium rounded-xl text-green-700">
+                      <span className="bg-green-100 text-sm px-3 py-[2px] font-medium rounded-xl text-green-700">
                         Random Sticker Label
                       </span>
                     </td>
-                    <td className="px-4 py-4 flex mt-1">
+                    <td className="px-4 py-4 flex mt-2">
                       <button className="text-gray-500 mr-2">
-                        <FiTrash2 />
+                        <FiTrash2 size={20} />
                       </button>
                       <button className="text-gray-500 mr-2">
-                        <FiEdit2 />
+                        <FiEdit2 size={20} />
                       </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onNextPage={handleNextPage}
-              onPrevPage={handlePrevPage}
-            />
+            <Pagination data={data} setPage={setPage} page={page} />
           </div>
         </div>
       </div>

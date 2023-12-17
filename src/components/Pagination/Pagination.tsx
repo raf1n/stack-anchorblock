@@ -1,20 +1,34 @@
-import React from "react";
-
-const Pagination = ({ currentPage, totalPages, onNextPage, onPrevPage }) => {
+const Pagination = ({
+  page,
+  setPage,
+  data,
+}: {
+  page: number;
+  setPage: any;
+  data: any;
+}) => {
   return (
-    <div className="flex border-t justify-between p-3 items-center">
+    <div className="border-t p-4 flex items-center gap-2 justify-between">
       <button
-        onClick={onPrevPage}
-        disabled={currentPage === 1}
-        className="flex items-center gap-2 border px-4 py-2 rounded-lg border-gray-300 shadow-sm text-gray-600"
+        onClick={() => {
+          if (page > 1) {
+            setPage(page - 1);
+          }
+        }}
+        className="text-[#344054] border border-gray-200 px-3 py-1 rounded-lg"
       >
         Previous
       </button>
-      <p className="text-gray-600">Page 1 of 10</p>
+      <h2 className="text-[#344054]">
+        Page {data?.page} of {data?.total_pages}
+      </h2>
       <button
-        onClick={onNextPage}
-        disabled={currentPage === totalPages}
-        className="flex items-center gap-2 border px-4 py-2 rounded-lg border-gray-300 shadow-sm text-gray-600"
+        onClick={() => {
+          if (page < data?.total_pages) {
+            setPage(page + 1);
+          }
+        }}
+        className="text-[#344054] border border-gray-200 px-3 py-1 rounded-lg"
       >
         Next
       </button>

@@ -5,14 +5,24 @@ import SignUp from "../pages/SignUp/SignUp";
 import SignIn from "../pages/SignIn/SignIn";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Users from "../components/Users/Users";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: (
+      <PrivateRoute path="/sign-in">
+        <Main />
+      </PrivateRoute>
+    ),
+
     children: [
       {
         path: "/",
+        element: <Dashboard />,
+      },
+      {
+        path: "/home",
         element: <Dashboard />,
       },
       {

@@ -19,74 +19,96 @@ const TopNavbar = ({ toggle, setToggle }: topBarPropTypes) => {
       >
         <HiMenuAlt1 className="text-white h-6 w-6" />
       </div>
-      <div className="transition-all duration-300 cursor-pointer rounded-full flex items-center gap-4 lg:px-20">
-        <div className="flex items-center text-white gap-3 font-semibold -ml-10 md:ml-0 lg:ml-0 text-xl">
+      <div className="transition-all duration-300 cursor-pointer rounded-full flex items-center gap-4 lg:px-20 my-1">
+        <div className="flex items-center text-white gap-3 font-semibold -ml-10 md:ml-0 lg:ml-0 text-xl mr-20">
           <img className="w-10 h-6" src={NavLogo} alt="" />
           <h1>Stack</h1>
         </div>
-      </div>
-      {/* Navigation Links (Desktop) */}
-      <div className="text-white hidden lg:flex">
-        <NavLink
-          className="cursor-pointer hover: px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
-          to={"/home"}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          className="cursor-pointer hover: px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
-          to={"/users"}
-        >
-          Users
-        </NavLink>
-        <NavLink
-          className="cursor-pointer hover: px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
-          to={"/projects"}
-        >
-          Projects
-        </NavLink>
-        <NavLink
-          className="cursor-pointer hover: px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
-          to={"/tasks"}
-        >
-          Tasks
-        </NavLink>
-        <NavLink
-          className="cursor-pointer hover: px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
-          to={"/reporting"}
-        >
-          Reporting
-        </NavLink>
-      </div>
-      {/* Mobile Menu */}
-      {toggle && (
-        <div className="lg:hidden md:hidden block text-white absolute top-16 left-0 right-0 bg-primary">
+        <div className="text-white hidden lg:flex gap-1">
           <NavLink
-            className="block px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#7F56D9] cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+                : "cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+            }
             to={"/home"}
           >
             Home
           </NavLink>
           <NavLink
-            className="block px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#7F56D9] cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+                : "cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+            }
             to={"/users"}
           >
             Users
           </NavLink>
           <NavLink
-            className="block px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#7F56D9] cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+                : "cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+            }
             to={"/projects"}
           >
             Projects
           </NavLink>
           <NavLink
-            className="block px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#7F56D9] cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+                : "cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+            }
             to={"/tasks"}
           >
             Tasks
           </NavLink>
           <NavLink
-            className="block px-4 py-3 rounded-md hover:bg-[#7f56d9] hover:"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#7F56D9] cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+                : "cursor-pointer hover: px-4 py-2 rounded-md hover:bg-[#7f56d9]"
+            }
+            to={"/reporting"}
+          >
+            Reporting
+          </NavLink>
+        </div>
+      </div>
+
+      {/* Navigation Links (Desktop) */}
+
+      {/* Mobile Menu */}
+      {toggle && (
+        <div className="lg:hidden md:hidden block text-white absolute top-16 left-0 right-0 bg-primary">
+          <NavLink
+            className="block px-4 py-2 rounded-md hover:bg-[#7f56d9] hover:"
+            to={"/home"}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="block px-4 py-2 rounded-md hover:bg-[#7f56d9] hover:"
+            to={"/users"}
+          >
+            Users
+          </NavLink>
+          <NavLink
+            className="block px-4 py-2 rounded-md hover:bg-[#7f56d9] hover:"
+            to={"/projects"}
+          >
+            Projects
+          </NavLink>
+          <NavLink
+            className="block px-4 py-2 rounded-md hover:bg-[#7f56d9] hover:"
+            to={"/tasks"}
+          >
+            Tasks
+          </NavLink>
+          <NavLink
+            className="block px-4 py-2 rounded-md hover:bg-[#7f56d9] hover:"
             to={"/reporting"}
           >
             Reporting
