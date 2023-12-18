@@ -10,24 +10,32 @@ import PrivateRoute from "./PrivateRoute";
 export const routes = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <PrivateRoute path="/sign-in">
-        <Main />
-      </PrivateRoute>
-    ),
+    element: <Main />,
 
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute path="/sign-in">
+            <Dashboard />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/home",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute path="/sign-in">
+            <Dashboard />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/users",
-        element: <Users />,
+        element: (
+          <PrivateRoute path="/sign-in">
+            <Users />,
+          </PrivateRoute>
+        ),
       },
     ],
   },

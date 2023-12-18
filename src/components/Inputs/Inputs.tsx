@@ -1,10 +1,12 @@
+import { FieldError } from "react-hook-form";
+
 interface InputPropType {
   registerForm: any;
   value?: string;
   func?: () => void;
-  setValue?: any;
-  type: string;
-  error: any;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
+  type: "text" | "password" | "email" | "number" | "textarea" | "checkbox";
+  error?: FieldError | null;
   placeholder: string;
 }
 
@@ -29,7 +31,7 @@ const Inputs = ({
     `}
       onChange={(e) => {
         console.log(e.target.value);
-        setValue(e.target.value);
+        setValue && setValue(e.target.value);
         func();
       }}
       placeholder={`Enter ${placeholder}`}
