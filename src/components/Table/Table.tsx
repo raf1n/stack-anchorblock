@@ -1,5 +1,6 @@
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import Pagination from "../Pagination/Pagination";
+import { useEffect, useState } from "react";
 interface TablePropType {
   data: any;
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -7,6 +8,37 @@ interface TablePropType {
 }
 
 const Table = ({ data, setPage, page }: TablePropType) => {
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  useEffect(() => {
+    setSelectAll(selectedRows.length === data?.data?.length);
+  }, [selectedRows, data]);
+
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+
+    if (!selectAll) {
+      const allRowIndices = Array.from(
+        { length: data?.data?.length },
+        (_, index) => index
+      );
+      setSelectedRows(allRowIndices);
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
+  const handleRowCheckboxChange = (rowIndex: number) => {
+    setSelectedRows((prevSelectedRows) => {
+      if (prevSelectedRows.includes(rowIndex)) {
+        return prevSelectedRows.filter((index) => index !== rowIndex);
+      } else {
+        return [...prevSelectedRows, rowIndex];
+      }
+    });
+  };
+
   return (
     <div className="flex flex-col w-full">
       <div className="w-full overflow-auto">
@@ -18,6 +50,8 @@ const Table = ({ data, setPage, page }: TablePropType) => {
                   <th scope="col" className="py-3 pl-4">
                     <div className="flex items-center h-5">
                       <input
+                        checked={selectAll}
+                        onChange={handleSelectAll}
                         type="checkbox"
                         className="rounded bg-white border-gray-300 text-violet-500 focus:ring-white"
                       />
@@ -56,6 +90,8 @@ const Table = ({ data, setPage, page }: TablePropType) => {
                     <td className="py-3 pl-4">
                       <div className="flex items-center">
                         <input
+                          checked={selectedRows.includes(rowIndex)}
+                          onChange={() => handleRowCheckboxChange(rowIndex)}
                           type="checkbox"
                           className="rounded bg-white border-gray-300 text-violet-500 focus:ring-white"
                         />
